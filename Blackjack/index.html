@@ -1,22 +1,52 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
     <head>
         <style>
             body {
-                background-color:#080;
+                background-color: #070;
+            }
+            #actions {
+                margin: auto;
+                margin-top: 60%;
+                margin-bottom: 5%;
+                border: #420 5px solid;
+                width: 30%;
+                height: 100%;
+            }
+            button {
+                width: 100%;
+                font-size: 30px;
+                margin-left: auto;
+                margin-right: auto;
+                height: 100px;
+            }
+            #hit {
+                color: #fff;
+                background-color: #d00;
+            }
+            #hit:hover {
+                background-color: #f00;
+            }
+            #stay {
+                color: #fff;
+                background-color: #00d;
+            }
+            #stay:hover {
+                background-color: #00f;
             }
         </style>
         <script>
             let cards = [];
-            const refreshCards = () => fetch("https://kingjango13.github.io/CardsJS/Cards.json").then(res => res.json()).then(res => cards = res);
+            const cardsJSON = fetch("https://kingjango13.github.io/CardsJS/Cards.json").then(x => x.json());
+            const refreshCards = async() => cards = [...(await cardsJSON)];
             refreshCards();
-            
             const randomCard = () => cards.splice(Math.floor(Math.random() * cards.length),1)[0]
-            
-            function load(){
-                console.log(cards);
-            }
         </script>
     </head>
-    <body onload="load()"></body>
+    <body>
+        <div id="actions">
+            <button id="hit">HIT</button>
+            <button id="stay">STAY</button>
+        </div>
+    </body>
 </html>
