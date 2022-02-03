@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <style>
+            body {
+                background-color:#080;
+            }
+        </style>
+        <script>
+            let cards = [];
+            const refreshCards = () => fetch("https://kingjango13.github.io/CardsJS/Cards.json").then(res => res.json()).then(res => cards = res);
+            refreshCards();
+            
+            const randomCard = () => cards.splice(cards[Math.floor(Math.random() * cards.length)],1)[0]
+            
+            function load(){
+                console.log(cards);
+            }
+        </script>
+    </head>
+    <body onload="load()"></body>
+</html>
